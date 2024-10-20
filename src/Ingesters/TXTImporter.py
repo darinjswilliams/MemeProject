@@ -7,8 +7,8 @@ from src.QuoteEngine.QuoteModel import QuoteModel
 from ..CustomException.ParseImportException import ParseImportException
 
 
-class PDFImporter(IngestorInterface):
-    allowed_extensions = ['pdf']
+class TXTImporter(IngestorInterface):
+    allowed_extensions = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
@@ -23,7 +23,3 @@ class PDFImporter(IngestorInterface):
             quote_model_list.append(new_quote_model)
 
         return quote_model_list
-
-
-    def __repr__(self):
-        return f'PDFImporter(allowed extension {self.allowed_extensions})'
