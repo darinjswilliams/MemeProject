@@ -1,9 +1,9 @@
-from src.Ingesters.CSVImporter import CSVImporter
-from src.Ingesters.DocxImporter import DocxImporter
-from src.Ingesters.IngestorInterface import IngestorInterface
-from src.Ingesters.PDFImporter import PDFImporter
-from src.Ingesters.TXTImporter import TXTImporter
-from src.QuoteEngine.QuoteModel import QuoteModel
+from .CSVImporter import CSVImporter
+from .DocxImporter import DocxImporter
+from .IngestorInterface import IngestorInterface
+from .PDFImporter import PDFImporter
+from .TXTImporter import TXTImporter
+from ..QuoteEngine.QuoteModel import QuoteModel
 
 
 class Importer(IngestorInterface):

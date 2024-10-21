@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.QuoteEngine.QuoteModel import QuoteModel
+from ..QuoteEngine.QuoteModel import QuoteModel
 
 class IngestorInterface(ABC):
 

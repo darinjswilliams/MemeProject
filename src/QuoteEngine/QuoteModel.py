@@ -1,5 +1,3 @@
-
-
 class QuoteModel():
 
     def __init__(self, body, author):

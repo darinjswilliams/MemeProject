@@ -23,3 +23,6 @@ class TXTImporter(IngestorInterface):
             quote_model_list.append(new_quote_model)
 
         return quote_model_list
+
+    def __ref__(self):
+        return f'TXTImporter(allowed extensions {self.allowed_extensions})'

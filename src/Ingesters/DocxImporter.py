@@ -3,7 +3,7 @@ import pandas as pd
 import src.CustomException.ParseImportException
 
 from .IngestorInterface import IngestorInterface
-from src.QuoteEngine.QuoteModel import QuoteModel
+from ..QuoteEngine.QuoteModel import QuoteModel
 from ..CustomException.ParseImportException import ParseImportException
 
 
