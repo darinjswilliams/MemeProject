@@ -1,10 +1,13 @@
 import os
 import random
+
+from .Ingesters import Ingestor
 from .QuoteEngine import QuoteModel
 
 
 
 # @TODO Import your Ingestor and MemeEngine classes
+
 
 
 def generate_meme(path=None, body=None, author=None):

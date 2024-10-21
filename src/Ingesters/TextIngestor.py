@@ -19,7 +19,8 @@ class TXTIngestor(IngestorInterface):
               return List[QuoteModel]
         """
         if not cls.can_ingest(path):
-            raise ParseImportException(f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
+            raise ParseImportException(
+                f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
 
         quote_model_list = []
         with open(path, 'r') as data_file:

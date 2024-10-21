@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 from ..QuoteEngine.QuoteModel import QuoteModel
 
+
 class IngestorInterface(ABC):
 
     allowed_extensions = []
@@ -11,9 +12,7 @@ class IngestorInterface(ABC):
         ext = path.split('.')[-1]
         return ext in cls.allowed_extensions
 
-
     @classmethod
     @abstractmethod
-    def parse(cls, path:str) -> list[QuoteModel]:
+    def parse(cls, path: str) -> list[QuoteModel]:
         pass
-

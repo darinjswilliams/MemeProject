@@ -16,12 +16,15 @@ class PDFIngestor(IngestorInterface):
         """
         Parse a PDF file with a valid pdf extension
 
-        Arguments: a list containing - pdftotext, path to pdf file, tmp directory
+        Arguments: a list containing - pdftotext, path to
+                   pdf file, tmp directory
         Exception: ParseImportException
-        Libraries:  subprocess call  to pdftotext to read pdf file using file written to tmp
+        Libraries: Subprocess call  to pdftotext to
+                   read pdf file using file written to tmp
         """
         if not cls.can_ingest(path):
-            raise ParseImportException(f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
+            raise ParseImportException(
+                f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
 
         tmp = f'./tmp/{random.randint(0, 100000000)}.txt'
         call = subprocess.call(['pdftotext', path, tmp])
@@ -42,7 +45,6 @@ class PDFIngestor(IngestorInterface):
         file_ref.close()
         os.remove(tmp)
         return quote_model_list
-
 
     def __repr__(self):
         return f'PDFImporter(allowed extension {self.allowed_extensions})'

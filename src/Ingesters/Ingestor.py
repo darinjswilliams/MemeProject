@@ -10,7 +10,6 @@ class Ingestor(IngestorInterface):
 
     importers = [DocxIngestor, PDFIngestor, CSVIngestor, TXTIngestor]
 
-
     @classmethod
     def parse(cls, path) -> list[QuoteModel]:
         for importer in cls.importers:

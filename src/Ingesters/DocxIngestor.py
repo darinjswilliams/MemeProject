@@ -22,7 +22,8 @@ class DocxIngestor(IngestorInterface):
             return List[QuoteModel]
         """
         if not cls.can_ingest(path):
-            raise ParseImportException(f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
+            raise ParseImportException(
+                f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
 
         quote_model_list = []
         doc = docx.Document(path)
@@ -34,7 +35,6 @@ class DocxIngestor(IngestorInterface):
                 quote_model_list.append(new_cat)
 
         return quote_model_list
-
 
     def __repr__(self):
         return f'Docx Importer (allowed extension  {self.allowed_extensions} )'
