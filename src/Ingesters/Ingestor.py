@@ -1,14 +1,14 @@
-from .CSVImporter import CSVImporter
-from .DocxImporter import DocxImporter
+from .CSVIngestor import CSVIngestor
+from .DocxIngestor import DocxIngestor
 from .IngestorInterface import IngestorInterface
-from .PDFImporter import PDFImporter
-from .TXTImporter import TXTImporter
+from .PDFIngestor import PDFIngestor
+from .TextIngestor import TXTIngestor
 from ..QuoteEngine.QuoteModel import QuoteModel
 
 
-class Importer(IngestorInterface):
+class Ingestor(IngestorInterface):
 
-    importers = [DocxImporter, PDFImporter, CSVImporter, TXTImporter]
+    importers = [DocxIngestor, PDFIngestor, CSVIngestor, TXTIngestor]
 
 
     @classmethod

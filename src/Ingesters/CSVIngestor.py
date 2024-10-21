@@ -7,11 +7,19 @@ from src.QuoteEngine.QuoteModel import QuoteModel
 from ..CustomException.ParseImportException import ParseImportException
 
 
-class CSVImporter(IngestorInterface):
+class CSVIngestor(IngestorInterface):
     allowed_extensions = ['csv']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """ Parse a CSV file
+
+        Arguments: Path to CSV file with a valid csv extension
+        Exception: ParseImportException
+        Libraries: pandas to read csv file
+
+        return List[QuoteModel]
+        """
         if not cls.can_ingest(path):
             raise ParseImportException(f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
 
