@@ -1,9 +1,14 @@
 import random
 import os
+from operator import index
+
+import random
 import requests
 from flask import Flask, render_template, abort, request
 
 # @TODO Import your Ingestor and MemeEngine classes
+from .Ingesters.Ingestor import Ingestor
+from .MemeGenerator import MemeEngine
 
 app = Flask(__name__)
 
@@ -20,13 +25,13 @@ def setup():
 
     # TODO: Use the Ingestor class to parse all files in the
     # quote_files variable
-    quotes = None
+    quotes = [Ingestor.parse(qf) for qf in quote_files]
 
     images_path = "./_data/photos/dog/"
 
     # TODO: Use the pythons standard library os class to find all
     # images within the images images_path directory
-    imgs = None
+    imgs = os.listdir(images_path)
 
     return quotes, imgs
 

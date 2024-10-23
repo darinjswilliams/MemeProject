@@ -22,7 +22,7 @@ class CSVIngestor(IngestorInterface):
         """
         if not cls.can_ingest(path):
             raise ParseImportException(
-                f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
+                f'CSVIngestor can not parse {path}')
 
         quote_model_list = []
         df = pd.read_csv(path, header=0)

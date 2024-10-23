@@ -1,4 +1,4 @@
-class QuoteModel():
+class QuoteModel:
 
     def __init__(self, body, author):
         self.body = body
@@ -6,3 +6,6 @@ class QuoteModel():
 
     def __repr__(self):
         return f'"{self.body}" - {self.author}'
+
+    def __str__(self):
+        return f'QuoteModel({self.body}, {self.author})'

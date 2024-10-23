@@ -9,6 +9,7 @@ docutils==0.21.2
 Flask==3.0.3
 idna==3.10
 imagesize==1.4.1
+iniconfig==2.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 lxml==5.3.0
@@ -16,7 +17,10 @@ MarkupSafe==3.0.2
 numpy==2.1.2
 packaging==24.1
 pandas==2.2.3
+pillow==11.0.0
+pluggy==1.5.0
 Pygments==2.18.0
+pytest==8.3.3
 python-dateutil==2.9.0.post0
 python-doc==2020.10.1
 python-docs-theme==2024.6

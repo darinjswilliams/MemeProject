@@ -1,14 +1,13 @@
 import os
 import random
+import argparse
 
 from .Ingesters import Ingestor
 from .QuoteEngine import QuoteModel
 
-
+from .MemeGenerator import MemeEngine
 
 # @TODO Import your Ingestor and MemeEngine classes
-
-
 
 def generate_meme(path=None, body=None, author=None):
     """ Generate a meme given an path and a quote """
@@ -50,5 +49,11 @@ if __name__ == "__main__":
     # path - path to an image file
     # body - quote body to add to the image
     # author - quote author to add to the image
-    args = None
+    parser = argparse.ArgumentParser(description='Provide file path, body and author.')
+    parser.add_argument('--path', type=str, help='Path to image')
+    parser.add_argument('--body', type=str, help='Body text')
+    parser.add_argument('--author', type=str, help='Author')
+
+    args = parser.parse_args()
+
     print(generate_meme(args.path, args.body, args.author))
