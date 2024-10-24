@@ -3,7 +3,7 @@ import random
 import subprocess
 from typing import List
 
-from src.QuoteEngine.QuoteModel import QuoteModel
+from ..QuoteEngine.QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
 from ..CustomException.ParseImportException import ParseImportException
 

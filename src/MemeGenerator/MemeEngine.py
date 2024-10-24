@@ -4,7 +4,7 @@ import random
 from numpy.random.mtrand import Sequence
 
 
-class MemeEngine:
+class MemeEngine():
 
     def __init__(self, output_path: str):
         self.path = output_path

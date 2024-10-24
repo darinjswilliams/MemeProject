@@ -2,10 +2,10 @@ import os
 import random
 import argparse
 
-from .Ingesters import Ingestor
-from .QuoteEngine import QuoteModel
+from Ingesters import Ingestor as ingestor
+from QuoteEngine import QuoteModel
 
-from .MemeGenerator import MemeEngine
+from MemeGenerator import MemeEngine
 
 # @TODO Import your Ingestor and MemeEngine classes
 
@@ -31,7 +31,7 @@ def generate_meme(path=None, body=None, author=None):
                        './_data/DogQuotes/DogQuotesCSV.csv']
         quotes = []
         for f in quote_files:
-            quotes.extend(Ingestor.parse(f))
+            quotes.extend(ingestor.parse(f))
 
         quote = random.choice(quotes)
     else:

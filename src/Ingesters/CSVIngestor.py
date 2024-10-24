@@ -1,10 +1,10 @@
 from typing import List
+
 import pandas as pd
-import src.CustomException.ParseImportException
 
 from .IngestorInterface import IngestorInterface
-from src.QuoteEngine.QuoteModel import QuoteModel
 from ..CustomException.ParseImportException import ParseImportException
+from ..QuoteEngine.QuoteModel import QuoteModel
 
 
 class CSVIngestor(IngestorInterface):

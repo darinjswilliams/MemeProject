@@ -1,11 +1,10 @@
 from typing import List
-import pandas as pd
+
 import docx
-import src.CustomException.ParseImportException
 
 from .IngestorInterface import IngestorInterface
-from ..QuoteEngine.QuoteModel import QuoteModel
 from ..CustomException.ParseImportException import ParseImportException
+from ..QuoteEngine.QuoteModel import QuoteModel
 
 
 class DocxIngestor(IngestorInterface):
@@ -22,8 +21,8 @@ class DocxIngestor(IngestorInterface):
             return List[QuoteModel]
         """
         if not cls.can_ingest(path):
-            raise ParseImportException(
-                f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
+            raise (ParseImportException(
+                    f'{cls.__repr__} cannot parse {cls.allowed_extensions}'))
 
         quote_model_list = []
         doc = docx.Document(path)
