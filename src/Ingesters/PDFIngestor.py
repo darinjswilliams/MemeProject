@@ -3,9 +3,9 @@ import random
 import subprocess
 from typing import List
 
-from ..QuoteEngine.QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
 from ..CustomException.ParseImportException import ParseImportException
+from ..QuoteEngine.QuoteModel import QuoteModel
 
 
 class PDFIngestor(IngestorInterface):
@@ -36,9 +36,11 @@ class PDFIngestor(IngestorInterface):
         quote_model_list = []
 
         for line in file_ref.readlines():
-            line = line.strip('\n\r').strip()
-            if len(line) > 0:
-                parse = line.split(' - ')
+            line = line.strip('\n\r\f').strip()
+            # line = [lines.strip('\n\r\f').strip() for line in lines.split('" "')]
+            if len(line) > 0 and line != '' and line != '"':
+                # parse = [line.strip() for line in line.split('" "')]
+                parse = line.split('-')
                 new_quote_model = QuoteModel(parse[0], parse[1])
                 quote_model_list.append(new_quote_model)
 

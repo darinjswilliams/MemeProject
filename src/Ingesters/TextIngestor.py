@@ -24,9 +24,12 @@ class TXTIngestor(IngestorInterface):
 
         quote_model_list = []
         with open(path, 'r') as data_file:
-            for index, row in data_file.readline().split('-'):
-                new_quote_model = QuoteModel(row['body'], row['author'])
-                quote_model_list.append(new_quote_model)
+            for row in data_file.readlines():
+                row = row.strip('\n\r\f')
+                if len(row) > 0 and row != '':
+                    parse =  row.split('-')
+                    new_quote_model = QuoteModel(parse[0], parse[1])
+                    quote_model_list.append(new_quote_model)
 
         return quote_model_list
 
