@@ -1,4 +1,4 @@
-from src.Ingesters.TextIngestor import TXTIngestor as txt_ingestor
+from src.QuoteEngine.TextIngestor import TXTIngestor as txt_ingestor
 from src.CustomException.ParseImportException import ParseImportException
 import os
 import pytest

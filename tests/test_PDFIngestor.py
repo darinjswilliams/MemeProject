@@ -1,9 +1,6 @@
-import subprocess
-from src.Ingesters.PDFIngestor import PDFIngestor
-from src.CustomException.NoDirectoryException import  NoDirectoryException
+from src.QuoteEngine.PDFIngestor import PDFIngestor
 from src.CustomException.ParseImportException import  ParseImportException
 import os
-import random
 import pytest
 
 class Test_PdfIngestor:

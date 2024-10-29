@@ -2,9 +2,9 @@ from typing import List
 
 import pandas as pd
 
+# from ..CustomException import ParseImportException
+from .QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
-from ..CustomException.ParseImportException import ParseImportException
-from ..QuoteEngine.QuoteModel import QuoteModel
 
 
 class CSVIngestor(IngestorInterface):
@@ -21,7 +21,7 @@ class CSVIngestor(IngestorInterface):
         return List[QuoteModel]
         """
         if not cls.can_ingest(path):
-            raise ParseImportException(
+            raise Exception(
                 f'CSVIngestor can not parse {path}')
 
         quote_model_list = []

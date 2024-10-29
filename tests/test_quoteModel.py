@@ -1,5 +1,3 @@
-from shlex import quote
-
 from src.QuoteEngine.QuoteModel import QuoteModel
 
 

@@ -5,7 +5,7 @@ from .DocxIngestor import DocxIngestor
 from .IngestorInterface import IngestorInterface
 from .PDFIngestor import PDFIngestor
 from .TextIngestor import TXTIngestor
-from ..QuoteEngine.QuoteModel import QuoteModel
+from .QuoteModel import QuoteModel
 
 
 class Ingestor(IngestorInterface):
@@ -15,5 +15,5 @@ class Ingestor(IngestorInterface):
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         for importer in cls.importers:
-            if importer.parse(path):
+            if importer.can_ingest(path):
                 return importer.parse(path)

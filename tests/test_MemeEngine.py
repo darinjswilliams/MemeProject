@@ -14,7 +14,6 @@ class Test_MemeEngine:
         self.body = 'test body'
         self.width = 400
 
-
     def test_make_meme_no_author_return_image_path(self):
         expected_path = f'./tmp/out-{self.image_name}'
         self.meme_engine = MemeEngine(expected_path)

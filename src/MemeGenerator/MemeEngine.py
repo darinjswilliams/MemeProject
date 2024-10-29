@@ -9,6 +9,7 @@ class MemeEngine():
 
     def __init__(self, output_path: str):
         self.path = output_path
+        os.makedirs(os.path.dirname(self.path), exist_ok=True)
 
     def make_meme(self, img_path, text=None, author=None, width=500) -> str:
         """Create a Image With Text that includes the body and author
@@ -28,14 +29,17 @@ class MemeEngine():
         height = int(ratio * float(image.size[1]))
         image = image.resize((width, height), Image.Resampling.NEAREST)
 
+        # pdb.set_trace(header='Meme Engine - When Text and Author is not empty')
         if text is not None or author is not None:
             draw = ImageDraw.Draw(image)
-            font = ImageFont.truetype('./fonts/Roboto-Regular.ttf', size=40)
+            font_name = os.path.join('.', 'fonts', 'Roboto-Regular.ttf')
+            font = ImageFont.truetype(font_name, size=40)
             draw.text((random.randint(0, 50),
                        random.randint(0, 50)),
                       f'{text} {author}',
                       font=font,
                       fill='white')
+
 
         image.save(self.path)
 

@@ -4,8 +4,8 @@ import subprocess
 from typing import List
 
 from .IngestorInterface import IngestorInterface
-from ..CustomException.ParseImportException import ParseImportException
-from ..QuoteEngine.QuoteModel import QuoteModel
+# from ..CustomException.ParseImportException import ParseImportException
+from .QuoteModel import QuoteModel
 
 
 class PDFIngestor(IngestorInterface):
@@ -16,21 +16,20 @@ class PDFIngestor(IngestorInterface):
         """
         Parse a PDF file with a valid pdf extension
 
-        Arguments: a list containing - pdftotext, path to
-                   pdf file, tmp directory
+        Arguments: a list containing - path to pdf file, tmp directory
         Exception: ParseImportException
         Libraries: Subprocess call  to pdftotext to
                    read pdf file using file written to tmp
         """
         if not cls.can_ingest(path):
-            raise ParseImportException(
-                f'{cls.__repr__} cannot parse {cls.allowed_extensions}')
+            raise Exception(
+                f'ParseException {cls.__repr__} cannot parse {cls.allowed_extensions}')
 
         tmp = f'./tmp/{random.randint(0, 100000000)}.txt'
         call = subprocess.call(['pdftotext', path, tmp])
 
         if call != 0:
-            raise ParseImportException(f'pdftotext failed to parse {path}')
+            raise Exception('ParseException pdftotext failed to parse', path)
 
         file_ref = open(tmp, 'r')
         quote_model_list = []

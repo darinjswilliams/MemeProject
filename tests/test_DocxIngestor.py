@@ -1,4 +1,4 @@
-from src.Ingesters import DocxIngestor as ingest
+from src.QuoteEngine import DocxIngestor as ingest
 from src.CustomException.ParseImportException import ParseImportException
 import os
 import pytest

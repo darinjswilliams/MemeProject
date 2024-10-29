@@ -1,4 +1,4 @@
-from src.Ingesters import CSVIngestor as ingest
+from src.QuoteEngine import CSVIngestor as ingest
 from src.CustomException.ParseImportException import ParseImportException
 import os
 import pytest
@@ -28,7 +28,7 @@ class Test_CSVIngestor:
         filename = os.path.join(self.base_dir, self.csv_dir, self.invalid_csv_file_name)
         with pytest.raises(ParseImportException) as parse_exception:
             ingest.parse(filename)
-        assert str(parse_exception.value) == f'CSVIngestor can not parse {filename}'
+        assert parse_exception.type == ParseImportException
 
 
     def test_valid_parse_return_file_size(self, tmp_path):

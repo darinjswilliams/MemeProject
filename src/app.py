@@ -1,42 +1,50 @@
-import random
 import os
-from operator import index
 
 import random
 import requests
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, request
 
+from .CustomException import MemeException
 # @TODO Import your Ingestor and MemeEngine classes
-from  .Ingesters.Ingestor import Ingestor as ingestor
-from  .MemeGenerator.MemeEngine import MemeEngine as meme_engine
+from .QuoteEngine import Ingestor
+from .MemeGenerator import MemeEngine
 
 app = Flask(__name__)
 
-meme = meme_engine('./static')
+meme = MemeEngine('./static')
 
 
 def setup():
-    """ Load all resources """
 
-    quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                   './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesPDF.pdf',
-                   './_data/DogQuotes/DogQuotesCSV.csv']
+    """ Load all resources
+        Setup returns a tuple consisting of quotes and images
+        
+        1. Join the base directory with subdirectory - quote_path
+        2. Get a lit of file names only in the directory  - os.listdir
+        3. Create complete path for images with join - use List comprehension
+        4. Parse the quoted files - Call Ingestor.parse on each file
+        5. Get Path for images from tuple returned from os.walk
+           os.walk- returns tuple so grab only the images from list
+        6. return quotes and images
+    """
+    quote_path = os.path.join('../src', '_data/DogQuotes/')
+    quote_files = os.listdir(quote_path)
 
     # TODO: Use the Ingestor class to parse all files in the
+    file_names = [os.path.join(quote_path, names) for names in quote_files]
     # quote_files variable
-    quotes = [ingestor.parse(qf) for qf in quote_files]
+    quotes = [Ingestor.parse(qf) for qf in file_names]
 
-    images_path = "./_data/photos/dog/"
+    images_path = os.path.join('../src', '_data/photos/dog/')
 
-    # TODO: Use the pythons standard library os class to find all
+    # TODO: Uhse the pythons standard library os class to find all
     # images within the images images_path directory
-    imgs = os.walk(images_path)
+    imgs = [ img for root, dir, img in os.walk(images_path)][0]
 
     return quotes, imgs
 
-
 quotes, imgs = setup()
+
 
 
 @app.route('/')
@@ -71,17 +79,22 @@ def meme_post():
            file and the body and author form paramaters.
         3. Remove the temporary saved image.
     """
+
     path = request.form['image_url']
-    image_data = requests.get(path)
-    tmp = f'/tmp/{random.randint(1, 100000000)}.png'
-    with open(tmp, 'wb') as img:
-        img.write(image_data.content)
 
-    meme_obj = meme.make_meme(tmp, request.form['body'], request.form['author'])
+    try:
+        image_data = requests.get(path)
+        tmp = f'/tmp/{random.randint(1, 100000000)}.png'
+        with open(tmp, 'wb') as img:
+            img.write(image_data.content)
 
-    print(meme_obj)
+        meme.make_meme(tmp, request.form['body'], request.form['author'])
 
-    os.remove(tmp)
+        os.remove(tmp)
+
+    except MemeException as me:
+        print(f'Meme Generator Exception Occurred {me.message}')
+
     return render_template('meme.html', path=path)
 
 
