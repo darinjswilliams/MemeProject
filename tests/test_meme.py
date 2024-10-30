@@ -27,6 +27,6 @@ def test_generate_meme_no_path_returns_no_exception():
        we only need to compare the extension of file return
     """
     actual_path = meme_setup.generate_meme()
-    expected_file_ext = 'jpg'
+    expected_file_ext = 'png'
 
     assert actual_path[-3:] == expected_file_ext

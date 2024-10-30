@@ -21,12 +21,14 @@ pillow==11.0.0
 pluggy==1.5.0
 Pygments==2.18.0
 pytest==8.3.3
+pytest-mock==3.14.0
 python-dateutil==2.9.0.post0
 python-doc==2020.10.1
 python-docs-theme==2024.6
 python-docx==1.1.2
 pytz==2024.2
 requests==2.32.3
+requests-mock==1.12.1
 setuptools==75.2.0
 six==1.16.0
 snowballstemmer==2.2.0

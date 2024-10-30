@@ -1,21 +1,17 @@
 
 from MemeGenerator import MemeEngine
 from QuoteEngine import QuoteModel, Ingestor
-from CustomException import RequireParamException, NoDirectoryException
+from CustomException.RequireParamException import RequireParamException
+from CustomException.NoDirectoryException import NoDirectoryException
 
 import argparse
 import os
 import random
 
-# @TODO Import your Ingestor and MemeEngine classes
 
 def generate_meme(path=None, body=None, author=None):
     """ Generate a meme given an path and a quote and save image to
         temporary directory.
-
-    >>> generate_meme('./src/_data/photos/dog/', 'test', 'test')
-    >>> os.path.exists(path)
-    >>> False
     """
     img = None
     quote = None
@@ -60,17 +56,17 @@ def generate_meme(path=None, body=None, author=None):
         except Exception(f'{body, author}') as me:
             print(me.message)
 
-    meme = MemeEngine(f'./tmp/{img.split("/")[-1]}')
+    meme = MemeEngine('./tmp')
     path = meme.make_meme(img, quote.body, quote.author)
     return path
 
 
 if __name__ == "__main__":
-    # @TODO Use ArgumentParser to parse the following CLI arguments
     # path - path to an image file
     # body - quote body to add to the image
     # author - quote author to add to the image
-    parser = argparse.ArgumentParser(description='Provide file path, body and author.')
+    parser = argparse.ArgumentParser(
+        description='Provide file path, body and author.')
     parser.add_argument('--path', type=str, help='Path to image')
     parser.add_argument('--body', type=str, help='Body text')
     parser.add_argument('--author', type=str, help='Author')

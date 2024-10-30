@@ -4,7 +4,6 @@ import subprocess
 from typing import List
 
 from .IngestorInterface import IngestorInterface
-# from ..CustomException.ParseImportException import ParseImportException
 from .QuoteModel import QuoteModel
 
 
@@ -23,7 +22,8 @@ class PDFIngestor(IngestorInterface):
         """
         if not cls.can_ingest(path):
             raise Exception(
-                f'ParseException {cls.__repr__} cannot parse {cls.allowed_extensions}')
+                f'ParseException {cls.__repr__} '
+                f'cannot parse {cls.allowed_extensions}')
 
         tmp = f'./tmp/{random.randint(0, 100000000)}.txt'
         call = subprocess.call(['pdftotext', path, tmp])
@@ -36,9 +36,7 @@ class PDFIngestor(IngestorInterface):
 
         for line in file_ref.readlines():
             line = line.strip('\n\r\f').strip()
-            # line = [lines.strip('\n\r\f').strip() for line in lines.split('" "')]
             if len(line) > 0 and line != '' and line != '"':
-                # parse = [line.strip() for line in line.split('" "')]
                 parse = line.split('-')
                 new_quote_model = QuoteModel(parse[0], parse[1])
                 quote_model_list.append(new_quote_model)

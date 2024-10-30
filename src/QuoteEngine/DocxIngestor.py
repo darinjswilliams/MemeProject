@@ -2,9 +2,10 @@ from typing import List
 
 import docx
 
-# from src.CustomException import ParseImportException
+
 from .QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
+
 
 class DocxIngestor(IngestorInterface):
     allowed_extensions = ['docx']
@@ -21,7 +22,8 @@ class DocxIngestor(IngestorInterface):
         """
         if not cls.can_ingest(path):
             raise (Exception(
-                    f'ParseException {cls.__repr__} cannot parse {cls.allowed_extensions}'))
+                    f'ParseException {cls.__repr__} '
+                    f'cannot parse {cls.allowed_extensions}'))
 
         quote_model_list = []
         doc = docx.Document(path)

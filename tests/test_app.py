@@ -1,10 +1,9 @@
 import collections
-
-from src.app import setup as app_setup
-from src.QuoteEngine import Ingestor as ingest
-from src.CustomException.ParseImportException import ParseImportException
 import os
-import pytest
+
+from src.QuoteEngine import Ingestor as ingest
+from src.app import setup as app_setup
+
 
 def test_setup_return_image_count():
 
@@ -52,3 +51,4 @@ def test_app_setup_return_image_count():
     expected_images = 4
     actual_image_cnt = collections.Counter(actual_images)
     assert len(actual_image_cnt) == expected_images
+

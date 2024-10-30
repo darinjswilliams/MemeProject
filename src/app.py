@@ -4,10 +4,9 @@ import random
 import requests
 from flask import Flask, render_template, request
 
-from .CustomException import MemeException
-# @TODO Import your Ingestor and MemeEngine classes
-from .QuoteEngine import Ingestor
-from .MemeGenerator import MemeEngine
+from CustomException import MemeException
+from QuoteEngine import Ingestor
+from MemeGenerator import MemeEngine
 
 app = Flask(__name__)
 
@@ -18,7 +17,6 @@ def setup():
 
     """ Load all resources
         Setup returns a tuple consisting of quotes and images
-        
         1. Join the base directory with subdirectory - quote_path
         2. Get a lit of file names only in the directory  - os.listdir
         3. Create complete path for images with join - use List comprehension
@@ -30,35 +28,33 @@ def setup():
     quote_path = os.path.join('../src', '_data/DogQuotes/')
     quote_files = os.listdir(quote_path)
 
-    # TODO: Use the Ingestor class to parse all files in the
     file_names = [os.path.join(quote_path, names) for names in quote_files]
     # quote_files variable
     quotes = [Ingestor.parse(qf) for qf in file_names]
 
     images_path = os.path.join('../src', '_data/photos/dog/')
 
-    # TODO: Uhse the pythons standard library os class to find all
     # images within the images images_path directory
-    imgs = [ img for root, dir, img in os.walk(images_path)][0]
+    imgs = [img for root, dir, img in os.walk(images_path)][0]
 
     return quotes, imgs
+
 
 quotes, imgs = setup()
 
 
-
 @app.route('/')
 def meme_rand():
-    """ Generate a random meme """
-
-    # @TODO:
-    # Use the random python standard library class to:
-    # 1. select a random image from imgs array
-    # 2. select a random quote from the quotes array
-
+    """ Generate a random meme
+        Use the random python standard library class to:
+        1. select a random image from imgs array
+        2. select a random quote from the quotes array
+    """
     img = random.choice(imgs)
-    quote = random.choice(quotes)
-    path = meme.make_meme(img, quote.body, quote.author)
+    img_path = os.path.join('../src', f'_data/photos/dog/{img}')
+    random_quote = random.choice(random.choice(quotes))
+    path = meme.make_meme(img_path, text=random_quote.body,
+                          author=random_quote.author)
     return render_template('meme.html', path=path)
 
 

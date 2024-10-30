@@ -1,8 +1,6 @@
 from typing import List
 
 from .IngestorInterface import IngestorInterface
-# from ..CustomException.NoDirectoryException import NoDirectoryException
-# from ..CustomException.ParseImportException import ParseImportException
 from .QuoteModel import QuoteModel
 
 
@@ -21,7 +19,8 @@ class TXTIngestor(IngestorInterface):
         """
         if not cls.can_ingest(path):
             raise Exception(
-                f'ParseException{cls.__repr__} cannot parse {cls.allowed_extensions}')
+                f'ParseException{cls.__repr__} '
+                f'cannot parse {cls.allowed_extensions}')
 
         quote_model_list = []
         try:
@@ -29,12 +28,11 @@ class TXTIngestor(IngestorInterface):
                 for row in data_file.readlines():
                     row = row.strip('\n\r\f')
                     if len(row) > 0 and row != '':
-                        parse =  row.split('-')
+                        parse = row.split('-')
                         new_quote_model = QuoteModel(parse[0], parse[1])
                         quote_model_list.append(new_quote_model)
         except Exception as nde:
             print(f'NoDirectoryException can not open file: {nde}')
-
 
         return quote_model_list
 

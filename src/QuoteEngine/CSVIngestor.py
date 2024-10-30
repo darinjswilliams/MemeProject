@@ -2,7 +2,6 @@ from typing import List
 
 import pandas as pd
 
-# from ..CustomException import ParseImportException
 from .QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
 
