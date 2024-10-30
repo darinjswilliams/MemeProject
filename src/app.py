@@ -7,6 +7,7 @@ from flask import Flask, render_template, request
 from CustomException import MemeException
 from QuoteEngine import Ingestor
 from MemeGenerator import MemeEngine
+import os
 
 app = Flask(__name__)
 
@@ -25,6 +26,7 @@ def setup():
            os.walk- returns tuple so grab only the images from list
         6. return quotes and images
     """
+    os.makedirs('./static', exist_ok=True)
     quote_path = os.path.join('../src', '_data/DogQuotes/')
     quote_files = os.listdir(quote_path)
 

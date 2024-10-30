@@ -65,6 +65,7 @@ if __name__ == "__main__":
     # path - path to an image file
     # body - quote body to add to the image
     # author - quote author to add to the image
+    os.makedirs('./tmp', exist_ok=True)
     parser = argparse.ArgumentParser(
         description='Provide file path, body and author.')
     parser.add_argument('--path', type=str, help='Path to image')
