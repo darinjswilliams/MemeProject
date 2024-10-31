@@ -26,7 +26,6 @@ def setup():
         6. Get Path for images from tuple returned from os walk
         7. return quotes and images
     """
-    # os.makedirs('./static', exist_ok=True)
     create_tmp_dirs()
     quote_path = os.path.join('../src', '_data/DogQuotes/')
     quote_files = os.listdir(quote_path)
@@ -71,7 +70,7 @@ def meme_form():
 def meme_post():
     """ Create a user defined meme
         Use Flask to get information from Form than use requests
-        to call the url to retrieve the image
+        to call the url to retrieve th image
         1. Use requests to save the image from the image_url
            form param to a temp local file.
         2. Use the meme object to generate a meme using this temp

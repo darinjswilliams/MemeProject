@@ -22,8 +22,7 @@ def generate_meme(path=None, body=None, author=None):
     create_tmp_dirs()
 
     if path is None:
-        # images = "./src/_data/photos/dog/"
-        images = os.path.join('../src/_data', 'photos', 'dog')
+        images = "_data/photos/dog/"
 
         if not os.path.exists(images):
             raise NoDirectoryException(f'Directory {images} does not exists ')
@@ -40,12 +39,11 @@ def generate_meme(path=None, body=None, author=None):
     else:
         img = path
 
-    # pdb.set_trace(header='meme file -when body is none')
     if body is None:
-        quote_files = ['../src/_data/DogQuotes/DogQuotesTXT.txt',
-                       '../src/_data/DogQuotes/DogQuotesDOCX.docx',
-                       '../src/_data/DogQuotes/DogQuotesPDF.pdf',
-                       '../src/_data/DogQuotes/DogQuotesCSV.csv']
+        quote_files = ['_data/DogQuotes/DogQuotesTXT.txt',
+                       '_data/DogQuotes/DogQuotesDOCX.docx',
+                       '_data/DogQuotes/DogQuotesPDF.pdf',
+                       '_data/DogQuotes/DogQuotesCSV.csv']
 
         quotes = []
         for f in quote_files:

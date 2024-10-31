@@ -7,11 +7,16 @@ A Python virtual environment is established to accommodate the specific version(
 After step 5 a virtual environment is activated and than you can create a meme from executing main or app.
 <ol>
     <li>git clone https://github.com/darinjswilliams/MemeProject.git</li>
+    <li>Install pdf reader to your machine</li>  
+        <ol>
+            <li>Mac: brew install xpdf in the terminal.</li>
+            <li>Windows: Download the Windows command-line tools from the xpdf website</li>
+        </ol>  
     <li>cd MemeProject</li>
     <li>python -m venv .venv</li>
     <li>source .venv/bin/activate</li>
     <li>pip install -r requiremets.txt</li>
-</ol>
+</>
 
 ***Notes***  This project runs best on python versions 3.10 and above due to updated python libraries defined in requirements.txt
 
