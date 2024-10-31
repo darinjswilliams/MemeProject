@@ -87,7 +87,7 @@ def meme_post():
         with open(tmp, 'wb') as img:
             img.write(image_data.content)
 
-        meme.make_meme(tmp, request.form['body'], request.form['author'])
+        path = meme.make_meme(tmp, request.form['body'], request.form['author'])
 
         os.remove(tmp)
 

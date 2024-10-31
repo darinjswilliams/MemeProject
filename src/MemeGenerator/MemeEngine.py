@@ -32,7 +32,7 @@ class MemeEngine:
         if text is not None or author is not None:
             draw = ImageDraw.Draw(image)
             font_name = os.path.join('.', 'fonts', 'Roboto-Regular.ttf')
-            font = ImageFont.truetype(font_name, size=40)
+            font = ImageFont.truetype(font_name, size=25)
             draw.text((random.randint(0, 50),
                        random.randint(0, 50)),
                       f'{text} {author}',

@@ -1,5 +1,5 @@
 
-from src import meme as meme_setup
+from src import main as meme_setup
 from src.CustomException import RequireParamException, NoDirectoryException
 import pytest
 

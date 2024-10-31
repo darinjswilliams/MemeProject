@@ -3,7 +3,8 @@ A fun new way to make your own memes! The app lets you combine images with perfe
 The project consist of generating memes with quotes from the command line or web interface.  
 
 # Installation
-A Python virtual environment is established to accommodate the specific version(s) of the Python interpreter installed on your system
+A Python virtual environment is established to accommodate the specific version(s) of the Python interpreter installed on your system. 
+After step 5 a virtual environment is activated and than you can create a meme from executing main or app.
 <ol>
     <li>git clone https://github.com/darinjswilliams/MemeProject.git</li>
     <li>cd MemeProject</li>
@@ -26,8 +27,8 @@ Command Line interface (cli) accepts optional parameters consisting of:
 
 There are various ways to execute the command line interface with the optional parameters which can be pass in any order
 <ol>
-<li>python meme.py --path="path to image", --body='some text' --author='Author Name'</li>
-<li>python meme.py  - Executed with no parameters</li>
+<li>python main.py --path="path to image", --body='some text' --author='Author Name'</li>
+<li>python main.py  - Executed with no parameters</li>
 </ol>
 
 The CLI will throw a ***RequireParamException(f'Author Required if Body is Present')*** if you attempt to execute  
