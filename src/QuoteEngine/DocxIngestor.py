@@ -5,6 +5,7 @@ import docx
 
 from .QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
+# from ..CustomException import ParseImportException
 
 
 class DocxIngestor(IngestorInterface):

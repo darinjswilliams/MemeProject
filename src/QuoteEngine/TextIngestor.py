@@ -2,6 +2,7 @@ from typing import List
 
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
+# from ..CustomException import ParseImportException
 
 
 class TXTIngestor(IngestorInterface):

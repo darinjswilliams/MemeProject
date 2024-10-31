@@ -31,7 +31,7 @@ class Test_CSVIngestor:
         assert parse_exception.type == ParseImportException
 
 
-    def test_valid_parse_return_file_size(self, tmp_path):
+    def test_valid_parse_return_file_size(self):
         """
           Test to validate that a CSVIngestor is able to parse the file
           returns the length of the file
@@ -39,6 +39,12 @@ class Test_CSVIngestor:
         file_name =  os.path.join(self.base_dir, self.csv_dir, self.valid_csv_file_name)
         expected_list = ingest.parse(file_name)
         assert len(expected_list) > 0
+
+
+    def test_name_return_ingestor_name(self):
+        expected_name = 'CSV Importer'
+        actual_name = ingest.__repr__(self)
+        assert expected_name == actual_name
 
 
 

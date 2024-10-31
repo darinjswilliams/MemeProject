@@ -1,6 +1,11 @@
 class QuoteModel():
+    """ Quote Model is the data object tha takes 2 arguments
 
-    def __init__(self, body, author):
+        Arguments:
+        str - body
+        str - author
+    """
+    def __init__(self, body: str, author: str):
         self.body = body
         self.author = author
 

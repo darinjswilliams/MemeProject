@@ -4,6 +4,7 @@ class MemeException(Exception):
 
         The class also use the __rpr__ method for debug purpose
     """
+
     def __init__(self, message):
         self.message = message
 

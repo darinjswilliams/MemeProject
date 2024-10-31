@@ -1,8 +1,8 @@
 
 from MemeGenerator import MemeEngine
 from QuoteEngine import QuoteModel, Ingestor
-from CustomException.RequireParamException import RequireParamException
-from CustomException.NoDirectoryException import NoDirectoryException
+from CustomException import (RequireParamException, NoDirectoryException)
+from Utils import create_tmp_dirs
 
 import argparse
 import os
@@ -10,11 +10,16 @@ import random
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote and save image to
+    """
+        Generate a meme given an path and a quote and save image to
         temporary directory.
+
+        The utillity method create_tmp_dirs() creates a temporary directory for
+        tmp and static. Note those folder are not stored in git repository.
     """
     img = None
     quote = None
+    create_tmp_dirs()
 
     if path is None:
         # images = "./src/_data/photos/dog/"
@@ -65,7 +70,8 @@ if __name__ == "__main__":
     # path - path to an image file
     # body - quote body to add to the image
     # author - quote author to add to the image
-    os.makedirs('./tmp', exist_ok=True)
+    # os.makedirs('./tmp', exist_ok=True)
+
     parser = argparse.ArgumentParser(
         description='Provide file path, body and author.')
     parser.add_argument('--path', type=str, help='Path to image')

@@ -1,13 +1,13 @@
 import os
-
 import random
+
 import requests
 from flask import Flask, render_template, request
 
 from CustomException import MemeException
-from QuoteEngine import Ingestor
 from MemeGenerator import MemeEngine
-import os
+from QuoteEngine import Ingestor
+from Utils import create_tmp_dirs
 
 app = Flask(__name__)
 
@@ -18,15 +18,16 @@ def setup():
 
     """ Load all resources
         Setup returns a tuple consisting of quotes and images
-        1. Join the base directory with subdirectory - quote_path
-        2. Get a lit of file names only in the directory  - os.listdir
-        3. Create complete path for images with join - use List comprehension
-        4. Parse the quoted files - Call Ingestor.parse on each file
-        5. Get Path for images from tuple returned from os.walk
-           os.walk- returns tuple so grab only the images from list
-        6. return quotes and images
+        1. Create static directory if it doesn't exist'
+        2. Join the base directory with subdirectory - quote_path
+        3. Get a lit of file names only in the directory  - os.listdir
+        4. Create complete path for images with join - use List comprehension
+        5. Parse the quoted files - Call Ingestor parse on each file
+        6. Get Path for images from tuple returned from os walk
+        7. return quotes and images
     """
-    os.makedirs('./static', exist_ok=True)
+    # os.makedirs('./static', exist_ok=True)
+    create_tmp_dirs()
     quote_path = os.path.join('../src', '_data/DogQuotes/')
     quote_files = os.listdir(quote_path)
 
