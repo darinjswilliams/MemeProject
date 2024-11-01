@@ -85,7 +85,14 @@ Meme File changes add period in-front of package as indicated below. if not you 
     <li>from .Utils import create_tmp_dirs</li>
 </ol>
 
-### Directory Structure  
+# Roles and Responsibility  with Directory Structure
+
+***Custom Exception Module*** - The custom exception module contains custom exceptions.  The Custom Exception Classes are used in try except block and use to raise an exception to verify test located in testing module.  
+
+***Python Dependencies:***  No Python Library Dependencies.  
+***Inheritance:*** Exception Class  
+***Usage:*** Wrapp Code in Try Except Block
+
 src  
 ├── CustomException  
 │   ├── InvalidTextException.py  
@@ -94,20 +101,78 @@ src
 │   ├── NoDirectoryException.py  
 │   ├── ParseImportException.py  
 │   ├── RequireParamException.py  
+
+***MemeGenerator Module***  
+The Meme Engine Module is responsible for manipulating and drawing text onto images. All meme images are saved to a tmp directory.  
+The image is saved as a png file with a random sequence of number as the name.  
+
+***Python Dependencies:***  Pillow, numpy, os,random  
+***Inheritance:*** No Inheritance    
+***Optional Arguments:***  image path, body, author  
+***Usage:*** call ***make_meme method*** with or without arguments  
+***Returns:*** name of image with path location
+
+src  
 ├── MemeGenerator  
 │   ├── MemeEngine.py  
+
+
+***QuoteEngine Module***  
+The QuoteEngine Module is responsible for ingesting parsing many file types that contain quotes. The module is based on the Strategy Object Design Pattern. All child classes inherit from parent class ***IngestorInterface***. The individual ingestor classes  call the parent class can_ingest method to determine if a file is valid.  The module includes an Ingestor class which determines what child ingestor class is called during runtime.
+
+***Python Dependencies:***  pandas, subprocess, typing, random, os, docx    
+***Inheritance:*** IngestorInterface(ABC) - Abstract Base Class    
+***Arguments:***  file path  
+***Usage:*** call ***parse method***  
+***Returns:*** Quote Model with Text and Author  
+***Roles:*** The Ingestor class roll is to call the child ingestor classes determined by the file type being processed at runtime.    
+***Current File Types for Parsing:*** CSV, TXT, PDF, DOCX  
+  
+
+src  
 ├── QuoteEngine  
-│   ├── CSVIngestor.py  
+│   ├── CSVIngestor.py   
 │   ├── DocxIngestor.py  
 │   ├── Ingestor.py  
 │   ├── IngestorInterface.py  
 │   ├── PDFIngestor.py  
 │   ├── QuoteModel.py  
 │   ├── TextIngestor.py  
+
+***Utility Module*** 
+The role and responsibility of util_funs is creating the /tmp and /static directories. 
+src  
 ├── Utils  
 │   └── util_funs.py  
+
+***Main Module***  
+The main module provides a command line interface that is called from main and web interfaced call from app.  
+The main file accepts optional arguments that is passed to the MemeEngine class. The web interface starts a Flask Server on startup.  
+
+***main interface*** - creates a meme with quote and save it to /tmp directory. accepts optional arguments.   
+***app interface*** - provides web form to generate random memes from internal photos and a form to key in a url with author and text.  
+
+***Python Dependencies:***  Flask, requests, os, random 
+***Optional Arguments:***  image path, body, author  
+***Usage:*** call ***make_meme method*** with or without arguments  
+***Returns:*** name of image with path location
+
+src  
 ├── app.py  
-├── meme.py    
+├── main.py   
+
+
+***HTML FORMS***  
+There are three html forms which provide interaction when the app interface is called.   The base.html form contains the styling and buttons.  
+The meme_form allows the user to enter an url, body text and author.  The meme html is displayed on startup showing a random meme wih quote. The meme error is displayed if an invalid url is enter.  
+
+src  
+├── base.html  
+├── meme_form.html  
+├── meme.html  
+├── meme_error.html  
+
+
 
 
 

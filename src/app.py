@@ -4,7 +4,6 @@ import random
 import requests
 from flask import Flask, render_template, request
 
-from CustomException import MemeException
 from MemeGenerator import MemeEngine
 from QuoteEngine import Ingestor
 from Utils import create_tmp_dirs
@@ -27,14 +26,14 @@ def setup():
         7. return quotes and images
     """
     create_tmp_dirs()
-    quote_path = os.path.join('../src', '_data/DogQuotes/')
+    quote_path = os.path.join('./', '_data/DogQuotes/')
     quote_files = os.listdir(quote_path)
 
     file_names = [os.path.join(quote_path, names) for names in quote_files]
     # quote_files variable
     quotes = [Ingestor.parse(qf) for qf in file_names]
 
-    images_path = os.path.join('../src', '_data/photos/dog/')
+    images_path = os.path.join('./', '_data/photos/dog/')
 
     # images within the images images_path directory
     imgs = [img for root, dir, img in os.walk(images_path)][0]
@@ -53,7 +52,7 @@ def meme_rand():
         2. select a random quote from the quotes array
     """
     img = random.choice(imgs)
-    img_path = os.path.join('../src', f'_data/photos/dog/{img}')
+    img_path = os.path.join('./', f'_data/photos/dog/{img}')
     random_quote = random.choice(random.choice(quotes))
     path = meme.make_meme(img_path, text=random_quote.body,
                           author=random_quote.author)
@@ -86,12 +85,13 @@ def meme_post():
         with open(tmp, 'wb') as img:
             img.write(image_data.content)
 
-        path = meme.make_meme(tmp, request.form['body'], request.form['author'])
+        path = meme.make_meme(tmp, request.form['body'],
+                              request.form['author'])
 
         os.remove(tmp)
 
-    except MemeException as me:
-        print(f'Meme Generator Exception Occurred {me.message}')
+    except Exception:
+        return render_template('meme_error.html')
 
     return render_template('meme.html', path=path)
 
