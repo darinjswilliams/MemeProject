@@ -14,8 +14,9 @@ def generate_meme(path=None, body=None, author=None):
         Generate a meme given an path and a quote and save image to
         temporary directory.
 
-        The utillity method create_tmp_dirs() creates a temporary directory for
+        The utility method create_tmp_dirs() creates a temporary directory for
         tmp and static. Note those folder are not stored in git repository.
+        For future reference place all utility methods in helper file
     """
     img = None
     quote = None
